@@ -5,8 +5,12 @@ class StaticPagesController < ApplicationController
 
   def search
     @gem = Gems.info(params[:query])
+  rescue JSON::ParserError
+    if request.xhr?
+      render :partial => './error', status: 404
+    end
+  else
     @dependencies = @gem['dependencies']['development'].map {|dep| Gems.info(dep['name'])}
-    # byebug
     if request.xhr?
       render :partial => './response'
     end

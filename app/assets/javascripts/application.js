@@ -27,6 +27,16 @@ $(document).ready(function(){
     .done(function(response){
       $('#results').html(response);
       $form.trigger('reset');
+      $form.css('color','black')
+      $('#results').css('color', 'black')
+    })
+    .fail(function(response){
+      $('#results').html(response.responseText);
+      $form.css('color','red')
+      $('#results').css('color', 'red')
     })
   });
+  $('#results').on('click','.star', function(e){
+    console.log('Star Clicked');
+  })
 });
