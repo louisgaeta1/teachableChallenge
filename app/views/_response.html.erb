@@ -1,1 +1,10 @@
-<p><%= response%></p>
+<h2>FOUND GEM</h2>
+<a href="<%=@gem['gem_uri']%>"><%=@gem['name']%></a>
+<h2>INFO</h2>
+<p><%= @gem['info']%></p>
+<h2>DEPENDENCIES</h2>
+<ul>
+<% @gem['dependencies']['development'].each do |dep| %>
+  <li><%=dep['name']%></li>
+<% end %>
+</ul>

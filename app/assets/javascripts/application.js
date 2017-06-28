@@ -25,7 +25,7 @@ $(document).ready(function(){
       data: $form.serialize(),
     })
     .done(function(response){
-      console.log(response)
+      $('#results').html(response);
     })
   });
 });

@@ -4,8 +4,9 @@ class StaticPagesController < ApplicationController
   end
 
   def search
+    @gem = Gems.info(params[:query])
     if request.xhr?
-      render :partial => './response', locals: {response: params[:query]}
+      render :partial => './response'
     end
   end
 
