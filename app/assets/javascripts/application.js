@@ -14,3 +14,18 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require_tree .
+
+$(document).ready(function(){
+  $(".gem-search").on("submit", function(e){
+    e.preventDefault();
+    $form = $(this);
+    $.ajax({
+      method: $form.attr("method"),
+      url: $form.attr("action"),
+      data: $form.serialize(),
+    })
+    .done(function(response){
+      console.log(response)
+    })
+  });
+});
