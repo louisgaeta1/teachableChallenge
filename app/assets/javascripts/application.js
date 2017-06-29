@@ -36,10 +36,28 @@ $(document).ready(function(){
       $('#results').css('color', 'red')
     })
   });
+
   $('#results').on('click','.fa-star-o', function(e){
     $(this).addClass('fa-star').removeClass('fa-star-o');
-  })
+    var fav = loadFavorites();
+    fav.push(this.parentElement.innerText);
+    window.localStorage.setItem("favorites", JSON.stringify(fav));
+  });
+
   $('#results').on('click','.fa-star', function(e){
     $(this).addClass('fa-star-o').removeClass('fa-star');
-  })
+    var fav = loadFavorites();
+    var index = fav.indexOf(this.parentElement.innerText);
+    fav.splice(index, 1)
+    window.localStorage.clear();
+    window.localStorage.setItem("favorites", JSON.stringify(fav));
+  });
+
 });
+
+
+function loadFavorites() {
+  let favorites = window.localStorage.getItem('favorites');
+  favorites = favorites ? JSON.parse(favorites) : [];
+  return favorites
+}
