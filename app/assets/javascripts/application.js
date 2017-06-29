@@ -36,7 +36,10 @@ $(document).ready(function(){
       $('#results').css('color', 'red')
     })
   });
-  $('#results').on('click','.star', function(e){
-    console.log('Star Clicked');
+  $('#results').on('click','.fa-star-o', function(e){
+    $(this).addClass('fa-star').removeClass('fa-star-o');
+  })
+  $('#results').on('click','.fa-star', function(e){
+    $(this).addClass('fa-star-o').removeClass('fa-star');
   })
 });
