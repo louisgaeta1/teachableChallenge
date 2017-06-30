@@ -17,3 +17,26 @@
  @import 'bootstrap-sprockets';
  @import 'bootstrap';
  @import "font-awesome";
+
+nav {
+  background: image-url('map.png');
+  width: 531px;
+  height: 900px;
+}
+
+nav ul {
+  float: right;
+  clear: right;
+  padding-top: 250px;
+}
+nav ul li a {
+  color: white;
+}
+
+.search {
+
+}
+
+.navbar-header {
+  float: right;
+}
