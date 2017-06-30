@@ -46,7 +46,7 @@ $(document).ready(function(){
 
   $('#results').on('click','.fa-star-o', function(e){
     $(this).addClass('fa-star').removeClass('fa-star-o');
-
+    var fav = loadFavorites();
     fav.push(this.parentElement.innerText);
     window.localStorage.setItem("favorites", JSON.stringify(fav));
   });
