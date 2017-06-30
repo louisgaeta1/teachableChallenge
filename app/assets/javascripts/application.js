@@ -16,6 +16,14 @@
 //= require_tree .
 
 $(document).ready(function(){
+  $.ajax({
+    method: 'Get',
+    url: '/favorites',
+    data: 'favorites=' + window.localStorage.getItem('favorites')
+  })
+  .done(function(response){
+    $('#favorites').html(response);
+  })
   $(".gem-search").on("submit", function(e){
     e.preventDefault();
     $form = $(this);
@@ -58,6 +66,19 @@ $(document).ready(function(){
     fav.splice(index, 1);
     window.localStorage.clear();
     window.localStorage.setItem("favorites", JSON.stringify(fav));
+  });
+
+  $('#favorites').on('click','.fa-star', function(e){
+    $(this).addClass('fa-star-o').removeClass('fa-star');
+    var fav = loadFavorites();
+    var index = fav.indexOf(this.parentElement.innerText);
+    fav.splice(index, 1);
+    window.localStorage.clear();
+    window.localStorage.setItem("favorites", JSON.stringify(fav));
+    $(this.parentElement).remove()
+    if ($('#fav-list').html().trim() === ""){
+      $('#fav-list').html("<p>None</p>");
+    }
   });
 
 });

@@ -17,6 +17,13 @@ class StaticPagesController < ApplicationController
   end
 
   def favorites
+    if params[:favorites]
+      favorite_list = JSON.parse(params[:favorites])
+      @favorites = favorite_list.map { |favorite| Gems.info(favorite) }
+    end
+    if request.xhr?
+      render :partial => './favorites'
+    end
   end
 
 end
