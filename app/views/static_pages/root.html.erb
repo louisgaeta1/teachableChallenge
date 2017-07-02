@@ -1,13 +1,14 @@
-<div class="container">
+
   <div class="search">
     <h1>Search Gems</h1>
 
     <form class="gem-search" action="/search" method="post">
-      <input type="text" name="query" placeholder="Search Ruby Gems">
-      <input type="submit" value="Submit">
+      <input type="text" name="query" placeholder="Search Ruby Gems" id="text-field">
+      <button type="submit" style="border: 0; background: transparent">
+        <img src="<%= asset_path 'magnifying-glass.png'%>"  alt="submit" />
+      </button>
     </form>
 
     <div id="results">
     </div>
   </div>
-</div>

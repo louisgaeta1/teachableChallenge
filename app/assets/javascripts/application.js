@@ -43,19 +43,21 @@ $(document).ready(function(){
       })
       $form.trigger('reset');
       $form.css('color','black')
+      $form.css('border', '1px solid black');
       $('#results').css('color', 'black')
     })
     .fail(function(response){
       $('#results').html(response.responseText);
-      $form.css('color','red')
-      $('#results').css('color', 'red')
+      $form.css('color','red');
+      $form.css('border', '1px solid red');
+      $('#results').css('color', 'red');
     })
   });
 
   $('#results').on('click','.fa-star-o', function(e){
     $(this).addClass('fa-star').removeClass('fa-star-o');
     var fav = loadFavorites();
-    fav.push(this.parentElement.innerText);
+    fav.push(this.parentElement.innerText.trim());
     window.localStorage.setItem("favorites", JSON.stringify(fav));
   });
 

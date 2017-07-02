@@ -1,14 +1,13 @@
-<h2>FOUND GEM</h2>
 <div>
-  <a href="<%=@gem['project_uri']%>"><%=@gem['name']%></a><%= fa_icon 'star-o' %>
+  <a href="<%=@gem['project_uri']%>"><%=@gem['name']%> </a><%= fa_icon 'star-o' %>
 </div>
-<h2>INFO</h2>
-<p><%= @gem['info']%></p>
+<h2>INFORMATION</h2>
+<p id="info"><%= @gem['info']%></p>
 <h2>DEPENDENCIES</h2>
 <%if @dependencies.length > 0 %>
   <ul>
     <% @dependencies.each do |dep| %>
-      <li><a href="<%=dep['project_uri']%>"><%=dep['name']%></a><%= fa_icon 'star-o' %> </li>
+      <li><a href="<%=dep['project_uri']%>"><%=dep['name']%> </a><%= fa_icon 'star-o' %> </li>
     <% end %>
   </ul>
 <%else%>

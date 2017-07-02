@@ -7,18 +7,26 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <nav class="navbar navbar-left">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/">
-        <%= image_tag 'teachable-logo.png'%>
-      </a>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-5">
+        <nav class="navbar navbar-left">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="/">
+              <%= image_tag 'teachable-logo.png'%>
+            </a>
+          </div>
+          <ul class="nav nav-pills nav-stacked">
+            <li> <a href="/">Search</a></li>
+            <li> <a href="/favorites">Favorites</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="col-md-6">
+        <%= yield %>
+      </div>
     </div>
-      <ul class="nav nav-pills nav-stacked">
-        <li> <a href="/">Search</a></li>
-        <li> <a href="/favorites">Favorites</a></li>
-      </ul>
-  </nav>
-<%= yield %>
+  </div>
 
 </body>
 </html>
