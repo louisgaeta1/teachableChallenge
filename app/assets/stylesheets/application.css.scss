@@ -33,7 +33,7 @@ nav ul li a {
   color: white;
 }
 
-.search {
+.search, .fav {
   margin-left: 50px;
   margin-top: 150px;
 }
@@ -79,11 +79,19 @@ p#error {
   color: #8E8E8E;
 }
 
-#results ul {
+#results ul, #favorites ul {
   list-style: none;
   padding: 0;
 }
 
 #results li {
   margin-top: 10px;
+}
+
+#favorites {
+  margin-top: 60px;
+}
+
+#favorites li{
+  margin-top: 20px;
 }

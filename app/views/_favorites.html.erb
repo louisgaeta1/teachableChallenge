@@ -1,7 +1,7 @@
 <ul id='fav-list'>
   <% if @favorites && @favorites != []%>
     <% @favorites.each do |favorite| %>
-      <li><a href="<%=favorite['project_uri']%>"><%=favorite['name']%></a><%= fa_icon 'star' %></li>
+      <li><%= fa_icon 'star' %> <a href="<%=favorite['project_uri']%>"><%=favorite['name']%></a></li>
     <%end%>
   <% else %>
     <p>None</p>

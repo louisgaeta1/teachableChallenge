@@ -37,7 +37,7 @@ $(document).ready(function(){
       var fav = loadFavorites();
       var stars = $('.fa-star-o')
       stars.each(function(){
-        if (fav.includes(this.parentElement.innerText)){
+        if (fav.includes(this.parentElement.innerText.trim())){
           $(this).addClass('fa-star').removeClass('fa-star-o')
         }
       })
@@ -64,7 +64,7 @@ $(document).ready(function(){
   $('#results').on('click','.fa-star', function(e){
     $(this).addClass('fa-star-o').removeClass('fa-star');
     var fav = loadFavorites();
-    var index = fav.indexOf(this.parentElement.innerText);
+    var index = fav.indexOf(this.parentElement.innerText.trim());
     fav.splice(index, 1);
     window.localStorage.clear();
     window.localStorage.setItem("favorites", JSON.stringify(fav));
@@ -73,7 +73,7 @@ $(document).ready(function(){
   $('#favorites').on('click','.fa-star', function(e){
     $(this).addClass('fa-star-o').removeClass('fa-star');
     var fav = loadFavorites();
-    var index = fav.indexOf(this.parentElement.innerText);
+    var index = fav.indexOf(this.parentElement.innerText.trim());
     fav.splice(index, 1);
     window.localStorage.clear();
     window.localStorage.setItem("favorites", JSON.stringify(fav));
