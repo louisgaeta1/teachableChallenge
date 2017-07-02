@@ -26,7 +26,7 @@ $(document).ready(function(){
   })
   $(".gem-search").on("submit", function(e){
     e.preventDefault();
-    $form = $(this);
+    var $form = $(this);
     $.ajax({
       method: $form.attr("method"),
       url: $form.attr("action"),
@@ -36,47 +36,26 @@ $(document).ready(function(){
       $('#results').html(response);
       var fav = loadFavorites();
       var stars = $('.fa-star-o')
-      stars.each(function(){
-        if (fav.includes(this.parentElement.innerText.trim())){
-          $(this).addClass('fa-star').removeClass('fa-star-o')
-        }
-      })
+      markFavorites(fav, stars);
       $form.trigger('reset');
-      $form.css('color','black')
-      $form.css('border', '1px solid black');
-      $('#results').css('color', 'black')
+      colorForm($form, 'black');
     })
     .fail(function(response){
       $('#results').html(response.responseText);
-      $form.css('color','red');
-      $form.css('border', '1px solid red');
-      $('#results').css('color', 'red');
+      colorForm($form, 'red');
     })
   });
 
   $('#results').on('click','.fa-star-o', function(e){
-    $(this).addClass('fa-star').removeClass('fa-star-o');
-    var fav = loadFavorites();
-    fav.push(this.parentElement.innerText.trim());
-    window.localStorage.setItem("favorites", JSON.stringify(fav));
+    favorite(this);
   });
 
   $('#results').on('click','.fa-star', function(e){
-    $(this).addClass('fa-star-o').removeClass('fa-star');
-    var fav = loadFavorites();
-    var index = fav.indexOf(this.parentElement.innerText.trim());
-    fav.splice(index, 1);
-    window.localStorage.clear();
-    window.localStorage.setItem("favorites", JSON.stringify(fav));
+    unfavorite(this);
   });
 
   $('#favorites').on('click','.fa-star', function(e){
-    $(this).addClass('fa-star-o').removeClass('fa-star');
-    var fav = loadFavorites();
-    var index = fav.indexOf(this.parentElement.innerText.trim());
-    fav.splice(index, 1);
-    window.localStorage.clear();
-    window.localStorage.setItem("favorites", JSON.stringify(fav));
+    unfavorite(this);
     $(this.parentElement).remove()
     if ($('#fav-list').html().trim() === ""){
       $('#fav-list').html("<p>None</p>");
@@ -91,3 +70,44 @@ function loadFavorites() {
   favorites = favorites ? JSON.parse(favorites) : [];
   return favorites;
 };
+
+function unfavorite(star){
+  unmarkFav(star);
+  var fav = loadFavorites();
+  var index = fav.indexOf(starToGem(star));
+  fav.splice(index, 1);
+  window.localStorage.clear();
+  window.localStorage.setItem("favorites", JSON.stringify(fav));
+}
+
+function favorite(star){
+  markFav(star);
+  var fav = loadFavorites();
+  fav.push(starToGem(star));
+  window.localStorage.setItem("favorites", JSON.stringify(fav));
+}
+
+function colorForm(form, color){
+  form.css('color', color);
+  form.css('border', '1px solid ' + color);
+}
+
+function markFavorites(favorites, stars){
+  stars.each(function(){
+    if (favorites.includes(starToGem(this))){
+      markFav(this);
+    }
+  });
+}
+
+function markFav(star){
+  $(star).addClass('fa-star').removeClass('fa-star-o');
+}
+
+function unmarkFav(star){
+  $(star).addClass('fa-star-o').removeClass('fa-star');
+}
+
+function starToGem(star){
+  return star.parentElement.innerText.trim();
+}
